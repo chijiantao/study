@@ -23,7 +23,7 @@
    #!/usr/bin/env python3
    # -*- coding: utf-8 -*-
    ```
-5.  使用list和tuple 
+5. 使用list和tuple 
    1. classmates = ['Michael', 'Bob', 'Tracy'] ,list增加元素 classmates.apend('abc') 
    2. classmates.insert(1, 'Jack') 插入元素
    3. classmates.pop() 删除末尾元素
@@ -32,28 +32,27 @@
    6. classmates = ('Michael', 'Bob', 'Tracy'), classmates没有append和insert方法
    7. 但是，要定义一个只有1个元素的tuple，比如使用t=（1，）防止t被当成了数字1 
 6. 条件判断
- 1. if x:
+   1. if x:
     print('True') 只要x是非零数值、非空字符串、非空list等，就判断为True，否则为False。
- 2. s = input('birth: ')
-birth = int(s) 整数类型转换
+   2. s = input('birth: ')birth = int(s) 整数类型转换
 7. 循环
- 1. pyhon 两种循环 for key in ['a','b','c']: , range函数可以生成一个整数序列for key in range(100):  
- 2. 第二种是while循环，while n > 0 : 
- 3. 循环中break结束循环，continue停止本次循环继续开始下次。
+   1. pyhon 两种循环 for key in ['a','b','c']: , range函数可以生成一个整数序列for key in range(100):  
+   2. 第二种是while循环，while n > 0 : 
+   3. 循环中break结束循环，continue停止本次循环继续开始下次。
 7. dict和set
- 1. d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}，key不存在时，给key赋值会报错
- 2. 判断key是否存在 if key in d: ,删除key   d.pop('Bob')
- 3. 需要牢记的第一条就是dict的key必须是不可变对象,是因为dict根据key来计算value的存储位置，如果每次计算相同的key得出的结果不同，那dict内部就完全混乱了。
- 4. set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。s = set([1, 2, 3]) , s = {1,2,3} , 通过过add(key)方法可以添加元素到set中，可以重复添加，但不会有效果。通过remove(key)方法可以删除元素。
- 5. set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作。
+   1. d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}，key不存在时，给key赋值会报错
+   2. 判断key是否存在 if key in d: ,删除key   d.pop('Bob')
+   3. 需要牢记的第一条就是dict的key必须是不可变对象,是因为dict根据key来计算value的存储位置，如果每次计算相同的key得出的结果不同，那dict内部就完全混乱了。
+   4. set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。s = set([1, 2, 3]) , s = {1,2,3} , 通过过add(key)方法可以添加元素到set中，可以重复添加，但不会有效果。通过remove(key)方法可以删除元素。
+   5. set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作。
  ```
  s1 = set([1, 2, 3])
  s2 = set([2, 3, 4])
  s1 & s2 等于{2,3}
  s1 | s2 等于{1,2,3,4}
  ```
- 6. set和dict的唯一区别仅在于没有存储对应的value，但是，set的原理和dict一样，所以，同样不可以放入可变对象，因为无法判断两个可变对象是否相等，也就无法保证set内部“不会有重复元素”。
- 7. 不可变对象,对于不变对象来说，调用对象自身的任意方法，也不会改变该对象自身的内容。相反，这些方法会创建新的对象并返回，这样，就保证了不可变对象本身永远是不可变的。
+   6. set和dict的唯一区别仅在于没有存储对应的value，但是，set的原理和dict一样，所以，同样不可以放入可变对象，因为无法判断两个可变对象是否相等，也就无法保证set内部“不会有重复元素”。
+   7. 不可变对象,对于不变对象来说，调用对象自身的任意方法，也不会改变该对象自身的内容。相反，这些方法会创建新的对象并返回，这样，就保证了不可变对象本身永远是不可变的。
  ```
  >>> a = 'abc'
 >>> a.replace('a', 'A')
