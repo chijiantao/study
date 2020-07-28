@@ -16,6 +16,10 @@
    
    print(len(trim('hello  ')))
    ```
-2. 迭代
+2. 迭代:如果给定一个list或tuple，我们可以通过for循环来遍历这个list或tuple，这种遍历我们称为迭代（Iteration）。默认情况下，dict迭代的是key。如果要迭代value，可以用for value in d.values()，如果要同时迭代key和value，可以用for k, v in d.items()。
+```
+for i, value in enumerate(['A', 'B', 'C']):
+...     print(i, value)
+```
 
-3. 
+3. isinstance('abc', Iterable) # str是否可迭代 判断类型是否是可迭代的
