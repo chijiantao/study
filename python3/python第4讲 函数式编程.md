@@ -1,7 +1,15 @@
 1. 把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式。
-2. map()函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回，reduce把一个函数作用在一个序列[x1, x2, x3, ...]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算
-   
+2. map\(\)函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回，reduce把一个函数作用在一个序列\[x1, x2, x3, ...\]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算
+3. map\(\)类似，filter\(\)也接收一个函数和一个序列。和map\(\)不同的是，filter\(\)把传入的函数依次作用于每个元素，然后根据返回值是True还是False决定保留还是丢弃该元素。
+
 ```
+def not_empty(s):
+ return s and s.strip()
+list(filter(not_empty, ['A', '', 'B', None, 'C', '  ']))
+结果: ['A', 'B', 'C']
+```
+
+```py
 from functools import reduce
 
 def str2float(s):
@@ -41,4 +49,8 @@ if abs(str2float('123.456') - 123.456) < 0.00001:
     print('测试成功!')
 else:
     print('测试失败!')
-   ```
+```
+
+
+
+
