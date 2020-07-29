@@ -51,6 +51,48 @@ else:
     print('测试失败!')
 ```
 
+4. 排序可以指定key的排序函数
+```py
+sorted([36, 5, -12, 9, -21], key=abs)
+[5, 9, -12, -21, 36]
+```
+
+5. 返回函数
+```
+def count():
+    fs = []
+    for i in range(1, 4):
+        def f():
+             return i*i
+        fs.append(f)
+    return fs
+
+f1, f2, f3 = count()
+
+f1（） f2() f3()都等于9全部都是9！原因就在于返回的函数引用了变量i，但它并非立刻执行。等到3个函数都返回时，它们所引用的变量i已经变成了3，因此最终结果为9。返回闭包时牢记一点：返回函数不要引用任何循环变量，或者后续会发生变化的变量
+
+正确方法
+
+def count():
+    def f(j):
+        def g():
+            return j*j
+        return g
+    fs = []
+    for i in range(1, 4):
+        fs.append(f(i)) # f(i)立刻被执行，因此i的当前值被传入f()
+    return fs
+    
+闭包实现函数计数器 
+def createCounter():
+    L = [0]
+    def counter():
+       L[0] += 1
+       return L[0]  
+        
+    return counter
+
+```
 
 
 
