@@ -95,9 +95,36 @@ def createCounter():
 ```
 
 6. 匿名函数,匿名函数有个限制，就是只能有一个表达式，不用写return，返回值就是该表达式的结果。
+
 ```
 L = list(filter(lambda n : n % 2 == 1, range(1, 20)))
 
 ```
 
+7. 装饰器
+现在，假设我们要增强now()函数的功能，比如，在函数调用前后自动打印日志，但又不希望修改now()函数的定义，这种在代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator）。
+
+```
+import time
+import functools
+def log(level):
+    def decorator(f):
+        @functools.wraps(func)
+        def wraper(*args, **kw):
+            print("Log level %s: is is ok",level )
+            return f(*args, ** kw)
+
+        return wraper
+    return decorator
+
+
+
+@log('warning')
+def now():
+    print('now time is %s', time.time())
+
+
+
+now()
+```
 
