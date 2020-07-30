@@ -21,8 +21,85 @@
         cls.count = cls.count + 1
   ```
 * 使用__slots__
-为了达到限制的目的，Python允许在定义class的时候，定义一个特殊的__slots__变量，来限制该class实例能添加的属性
+为了达到限制的目的，Python允许在定义class的时候，定义一个特殊的__slots__变量，来限制该class实例能添加的属性,使用__slots__要注意，__slots__定义的属性仅对当前类实例起作用，对继承的子类是不起作用的,除非在子类中也定义__slots__，这样，子类实例允许定义的属性就是自身的__slots__加上父类的__slots__
   ```
    class Student(object):
     __slots__ = ('name', 'age') # 用tuple定义允许绑定的属性名称
   ```
+* 使用property定义属性
+  ```
+  class Screen(object):
+    @property
+    def width(self):
+        return self._width
+
+    @width.setter
+    def width(self,value):
+        self._width = value  
+
+    @property
+    def height(self):
+        return self._height
+
+    @height.setter
+    def height(self,value):
+        self._height = value  
+
+    @property
+    def resolution(self):
+        self._resolution =   self._height * self._width
+        return self._resolution
+  ```  
+* 多重继承,通过多重继承，一个子类就可以同时获得多个父类的所有功能
+  ```
+  class Dog(Mammal, Runnable):
+    pass
+  ```
+  
+* 定制类，Python的class中还有许多这样有特殊用途的函数，可以帮助我们定制类。
+  ```
+  当调用不存在的属性时，比如score，Python解释器会试图调用__getattr__(self, 'score')来尝试获得属性，这样，我们就有机会返回score的值：
+  
+  class Student(object):
+
+    def __init__(self):
+        self.name = 'Michael'
+
+    def __getattr__(self, attr):
+        if attr=='score':
+            return 99
+  ```
+  
+* 枚举类
+
+  @unique
+class Gender(Enum):
+    Male = 0
+    Female = 1
+class Student(object):
+    def __init__(self, name, gender = 0):    # 初始化输入参数gender可以是Gender类的枚举成员，同时也可以是枚举成员的名称或值
+        self.name = name
+        if isinstance(gender, Gender):    # gender为枚举成员
+            self.gender = gender
+
+        elif isinstance(gender, str):    # gender为枚举成员的名称
+            if gender.capitalize() in Gender.__members__.keys():    # Enum的特殊属性__members__是一个将名称映射到枚举成员的字典
+                self.gender = Gender[gender.capitalize()]
+            else:
+                raise ValueError('%s is not a valid gender' % gender)
+                            
+        elif isinstance(gender, int):    # gender为枚举成员的值
+            if gender in Gender._value2member_map_:    # Enum的属性_value2member_map_是包含所有枚举成员的值的列表
+                self.gender = Gender(gender)
+            else:
+                raise ValueError('%s is not a valid gender' % gender)
+
+        else:
+            raise ValueError('%s is not a valid gender' % gender)            
+        
+alan = Student('Alan', 0)
+bart = Student('Bart', Gender.Male)
+cathy = Student('Cathy', 'female')
+for i in [alan, bart, cathy]:
+    print(i.gender)
+  
